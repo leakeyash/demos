@@ -1,0 +1,38 @@
+<Databases>
+	<Group Name="NAM">
+		<Database>
+			<Name>Test1</Name>
+			<HostName>HostName1</HostName>
+			<Port>10086</Port>
+		</Database>
+		<Database>
+			<Name>Test2</Name>
+			<HostName>HostName2</HostName>
+			<Port>10010</Port>
+		</Database>
+	</Group>
+	<Group Name="EMEA">
+		<Database>
+			<Name>Test5</Name>
+			<HostName>HostName65</HostName>
+			<Port>10086234</Port>
+		</Database>
+		<Database>
+			<Name>Test6</Name>
+			<HostName>H32ostName2</HostName>
+			<Port>100104</Port>
+		</Database>
+	</Group>
+	<Group Name="APAC">
+		<Database>
+			<Name>Test134</Name>
+			<HostName>HostName4561</HostName>
+			<Port>1008665</Port>
+		</Database>
+		<Database>
+			<Name>Test245</Name>
+			<HostName>Hos6tName2</HostName>
+			<Port>1001024</Port>
+		</Database>
+	</Group>
+</Databases>
