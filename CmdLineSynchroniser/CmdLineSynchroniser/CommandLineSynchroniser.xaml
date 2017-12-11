@@ -3,6 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:helper="clr-namespace:CmdLineSynchroniser.Helper"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:local="clr-namespace:CmdLineSynchroniser"
         mc:Ignorable="d"
         Title="Command Line Synchroniser" Height="889" Width="620" Background="WhiteSmoke">
@@ -31,29 +33,33 @@
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
             <Label Content="Server:" Grid.Row="0" Grid.Column="0" FontWeight="DemiBold" HorizontalAlignment="Left" Margin="10,5,0,0" Name="label2" VerticalAlignment="Stretch" Width="88" />
-            <ComboBox ItemsSource="{Binding DatabaseInfoGroup.Infos,Mode=OneWay}" DisplayMemberPath="Name" SelectedIndex="0" Height="24" Grid.Row="0" Grid.Column="1"  Margin="0,5,0,0" HorizontalAlignment="Stretch" Name="Servers" VerticalAlignment="Top" IsEditable="True" IsReadOnly="True"/>
+            <ComboBox ItemsSource="{Binding DatabaseInfoGroup.Infos,Mode=OneWay}" SelectedItem="{Binding DatabaseInfo,Mode=OneWayToSource}" DisplayMemberPath="Name" SelectedIndex="0" Height="24" Grid.Row="0" Grid.Column="1"  Margin="0,5,0,0" HorizontalAlignment="Stretch" Name="Servers" VerticalAlignment="Top" IsEditable="True" IsReadOnly="True"/>
             <Label Content="Database:" Grid.Row="1" Grid.Column="0" FontWeight="DemiBold" Margin="10,5,0,0" HorizontalAlignment="Left" Name="label3" VerticalAlignment="Top" Width="88" />
-            <TextBox Height="23" Grid.Row="1" Grid.Column="1" Name="Database" VerticalAlignment="Top" Margin="0,5,0,0" HorizontalAlignment="Stretch" Text="DRMS" />
+            <TextBox Text="{Binding DataBaseName}"  Height="23" Grid.Row="1" Grid.Column="1" Name="Database" VerticalAlignment="Top" Margin="0,5,0,0" HorizontalAlignment="Stretch"/>
             <Label Content="User:" Grid.Row="2" Grid.Column="0" FontWeight="DemiBold" Margin="10,5,0,0" HorizontalAlignment="Left" Name="label4" VerticalAlignment="Top" Width="88"/>
-            <TextBox Height="23" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" Name="User" VerticalAlignment="Top" Margin="0,5,0,0" Text="proddbo" />
+            <TextBox Text="{Binding UserName}" Height="23" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" Name="User" VerticalAlignment="Top" Margin="0,5,0,0" />
             <Label Content="Password:" Grid.Row="3" Grid.Column="0" FontWeight="DemiBold" Margin="10,5,0,0" HorizontalAlignment="Left" Name="label5" VerticalAlignment="Top" Width="88" />
-            <PasswordBox Grid.Row="3" Grid.Column="1" PasswordChar="*" Background="White" Foreground="DarkBlue" Height="23" HorizontalAlignment="Stretch" Name="Pwd" Margin="0,5,0,0" VerticalAlignment="Top" Password="proddbo" />
+            <PasswordBox helper:PasswordBoxHelper.Password="{Binding Password,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Row="3" Grid.Column="1" PasswordChar="*" Background="White" Foreground="DarkBlue" Height="23" HorizontalAlignment="Stretch" Name="Pwd" Margin="0,5,0,0" VerticalAlignment="Top" >
+                <i:Interaction.Behaviors>
+                    <helper:PasswordBoxBehavior/>
+                </i:Interaction.Behaviors>
+            </PasswordBox>
             <Label Content="EODDate:" Grid.Row="4" Grid.Column="0" Margin="10,5,0,0" FontWeight="DemiBold" HorizontalAlignment="Left" Name="label6" Width="88" />
-            <TextBox Height="23" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Stretch" Name="EODDate" VerticalAlignment="Top" Text="YYYYMMDD" Margin="0,5,0,0"  />
+            <TextBox Text="{Binding EodDate}" Height="23" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Stretch" Name="EODDate" VerticalAlignment="Top" Margin="0,5,0,0"  />
             <Label Content="e.g yyyymmdd" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Left" Name="label8" VerticalAlignment="Top" Width="122" />
             <Label Content="Output Path:" Grid.Row="5" Grid.Column="0" Margin="10,5,0,0" FontWeight="DemiBold" HorizontalAlignment="Left" Name="label7" VerticalAlignment="Top" Width="316" />
-            <TextBox Height="23" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Stretch" Name="OutputPath" VerticalAlignment="Top" Margin="0,5,0,0" Text="C:\Users" Grid.ColumnSpan="2" />
-            <Button Content="Browse" Grid.Row="5" Grid.Column="3" Height="23" HorizontalAlignment="Left" Margin="5,5,0,0" Name="Output_Browse" VerticalAlignment="Top" Width="75" />
+            <TextBox Text="{Binding CommandLineFileOutputPath}" Height="23" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Stretch" Name="OutputPath" VerticalAlignment="Top" Margin="0,5,0,0"  Grid.ColumnSpan="2" />
+            <Button Content="Browse" Grid.Row="5" Grid.Column="3" Height="23" HorizontalAlignment="Left" Margin="5,5,0,0" Name="Output_Browse" VerticalAlignment="Top" Width="75" Command="{Binding BrowseCommandLineFileOutputPathCommand}"/>
 
             <Label Content="Select the settings you wnat use for the existing command line text files under the above directory. " Margin="10,5,0,0" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="4" HorizontalAlignment="Stretch" Name="label9" VerticalAlignment="Top" />
-            <Button Content="Generate Command Line Text files" Grid.Row="7" Grid.Column="2" Margin="0,5,10,0" HorizontalAlignment="Stretch" Name="Connect_Button" VerticalAlignment="Top" Width="217" Grid.ColumnSpan="2" />
+            <Button Content="Generate Command Line Text files" Grid.Row="7" Grid.Column="2" Margin="0,5,10,0" HorizontalAlignment="Stretch" Name="Connect_Button" VerticalAlignment="Top" Width="217" Grid.ColumnSpan="2" Command="{Binding GenerateCommandLineTextFilesCommand}"/>
             <Button Content="Cancel" HorizontalAlignment="Stretch" Name="Cancel_Button" Margin="0,5,10,0" VerticalAlignment="Top" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="8" />
 
 
             <Grid Height="75" Background="WhiteSmoke" HorizontalAlignment="Left" Name="grid3" Margin="10,5,0,0" VerticalAlignment="Top" Width="318" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="3">
-                <RadioButton IsChecked="True" FontWeight="DemiBold" Content="Create file if not exist" Height="16" HorizontalAlignment="Left" Margin="20,10,0,0" Name="notgenerate" VerticalAlignment="Top"/>
-                <RadioButton FontWeight="DemiBold" Content="Overwrite any existing file" Height="16" HorizontalAlignment="Left" Margin="20,30,0,0" Name="replace" VerticalAlignment="Top" />
-                <RadioButton FontWeight="DemiBold" Content="Delete All files" Height="16" HorizontalAlignment="Left" Margin="20,50,0,0" Name="delete" VerticalAlignment="Top" />
+                <RadioButton IsChecked="{Binding IsCreateNew}" FontWeight="DemiBold" Content="Create file if not exist" Height="16" HorizontalAlignment="Left" Margin="20,10,0,0" Name="notgenerate" VerticalAlignment="Top"/>
+                <RadioButton IsChecked="{Binding IsOverwrite}" FontWeight="DemiBold" Content="Overwrite any existing file" Height="16" HorizontalAlignment="Left" Margin="20,30,0,0" Name="replace" VerticalAlignment="Top" />
+                <RadioButton IsChecked="{Binding IsClearAll}" FontWeight="DemiBold" Content="Delete All files" Height="16" HorizontalAlignment="Left" Margin="20,50,0,0" Name="delete" VerticalAlignment="Top" />
             </Grid>
         </Grid>
         <Label Content="Generate XML Files" FontWeight="Bold" FontSize="16" Height="30" HorizontalAlignment="Left" Margin="10,370,0,0" Name="label20" VerticalAlignment="Top" Width="383" />

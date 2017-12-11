@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTOs\FileHandler.cs" />
+    <Compile Include="ICommandLineGeneratorService.cs" />
     <Compile Include="IDatabaseInfoService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
