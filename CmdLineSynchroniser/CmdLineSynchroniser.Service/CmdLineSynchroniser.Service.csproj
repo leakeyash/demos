@@ -57,6 +57,10 @@
       <Project>{7dab7ed6-8808-45c2-8d24-ac7aae97ec09}</Project>
       <Name>CmdLineSynchroniser.Entity</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CmdLineSynchroniser.Repository\CmdLineSynchroniser.Repository.csproj">
+      <Project>{5B713AE0-B5CD-43A0-97C4-F116748C6B07}</Project>
+      <Name>CmdLineSynchroniser.Repository</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

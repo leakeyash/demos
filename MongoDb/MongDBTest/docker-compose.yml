@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  mongdbtest:
+    image: mongdbtest
+    build:
+      context: ./MongDBTest
+      dockerfile: Dockerfile

@@ -46,6 +46,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CmdLineSynchroniser.IRepository\CmdLineSynchroniser.IRepository.csproj">
+      <Project>{5AC6279A-DC4E-4885-8216-F902CEBEF80D}</Project>
+      <Name>CmdLineSynchroniser.IRepository</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CmdLineSynchroniser.Model\CmdLineSynchroniser.Entity.csproj">
       <Project>{7dab7ed6-8808-45c2-8d24-ac7aae97ec09}</Project>
       <Name>CmdLineSynchroniser.Entity</Name>
